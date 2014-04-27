@@ -11,21 +11,25 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad
+//This method replaced "ViewDidLoad" to make the screen landscape
+- (void)viewWillLayoutSubviews
 {
-    [super viewDidLoad];
-
-    // Configure the view.
+    [super viewWillLayoutSubviews];
     SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
-    
-    // Create and configure the scene.
-    SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    // Present the scene.
-    [skView presentScene:scene];
+
+    if (!skView.scene) {
+        
+        //Configure the view.
+        skView.showsFPS = YES;
+        skView.showsNodeCount = YES;
+        
+        //Create and configure the scene.
+        SKScene * scene = [MyScene sceneWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        //Present the scene.
+        [skView presentScene:scene];
+    }
 }
 
 - (BOOL)shouldAutorotate
